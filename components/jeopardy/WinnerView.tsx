@@ -38,10 +38,14 @@ export default function WinnerView({
           <li
             key={`${entry.name}-${entry.at}`}
             className={`grid grid-cols-3 items-center px-5 py-3 text-center text-xl ${
-              entry.at === runAt ? "bg-ra-red" : "bg-white/10"
+              index === 0
+                ? "animate-ladder-glow bg-ra-gold font-bold text-ra-navy"
+                : entry.at === runAt
+                  ? "bg-white/15"
+                  : "bg-white/10"
             }`}
           >
-            <span className="text-white/70">{index + 1}</span>
+            <span className={index === 0 ? "text-ra-navy/70" : "text-white/70"}>{index + 1}</span>
             <span className="font-semibold">{entry.name}</span>
             <span className="font-bold">${entry.score}</span>
           </li>

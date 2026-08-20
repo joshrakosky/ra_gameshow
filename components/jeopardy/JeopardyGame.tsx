@@ -150,6 +150,11 @@ export default function JeopardyGame() {
     returnToBoard(active.cat, active.val)
   }
 
+  const handleSkip = () => {
+    if (!active) return
+    returnToBoard(active.cat, active.val)
+  }
+
   const handleWrong = () => {
     if (!active) return
     const delta = daily ? wager : activeValue
@@ -235,6 +240,7 @@ export default function JeopardyGame() {
             setPeeked(true)
             setPeekPaused(true)
           }}
+          onSkip={handleSkip}
           onCorrect={handleCorrect}
           onWrong={handleWrong}
         />

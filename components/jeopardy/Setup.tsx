@@ -90,11 +90,15 @@ export default function Setup({
             {leaderboard.map((entry, index) => (
               <li
                 key={`${entry.name}-${entry.at}`}
-                className="grid grid-cols-3 items-center bg-white/10 px-4 py-3 text-center"
+                className={`grid grid-cols-3 items-center px-4 py-3 text-center ${
+                  index === 0
+                    ? "animate-ladder-glow bg-ra-gold font-bold text-ra-navy"
+                    : "bg-white/10"
+                }`}
               >
-                <span className="text-white/60">{index + 1}</span>
+                <span className={index === 0 ? "text-ra-navy/70" : "text-white/60"}>{index + 1}</span>
                 <span className="font-semibold">{entry.name}</span>
-                <span className="font-bold text-ra-gold">${entry.score}</span>
+                <span className={`font-bold ${index === 0 ? "text-ra-navy" : "text-ra-gold"}`}>${entry.score}</span>
               </li>
             ))}
           </ol>

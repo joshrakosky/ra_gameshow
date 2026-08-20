@@ -7,11 +7,12 @@ interface ClueViewProps {
   answer: string
   flipped: boolean
   onFlip: () => void
+  onSkip: () => void
   onCorrect: () => void
   onWrong: () => void
 }
 
-export default function ClueView({ clue, answer, flipped, onFlip, onCorrect, onWrong }: ClueViewProps) {
+export default function ClueView({ clue, answer, flipped, onFlip, onSkip, onCorrect, onWrong }: ClueViewProps) {
   return (
     <div className="flex flex-1 flex-col">
       <div className="clue-scene relative min-h-[42vh] flex-1">
@@ -27,13 +28,22 @@ export default function ClueView({ clue, answer, flipped, onFlip, onCorrect, onW
 
       <div className="mt-4 flex flex-wrap justify-center gap-3">
         {!flipped ? (
-          <button
-            type="button"
-            onClick={onFlip}
-            className="ra-category min-h-14 border border-white/30 px-6 text-sm transition-colors hover:border-[#0d4d73] hover:bg-[#0d4d73]"
-          >
-            Answer
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={onFlip}
+              className="ra-category min-h-14 border border-white/30 px-6 text-sm transition-colors hover:border-[#0d4d73] hover:bg-[#0d4d73]"
+            >
+              Answer
+            </button>
+            <button
+              type="button"
+              onClick={onSkip}
+              className="ra-category min-h-14 border border-white/30 px-6 text-sm transition-colors hover:border-[#0d4d73] hover:bg-[#0d4d73]"
+            >
+              Skip
+            </button>
+          </>
         ) : (
           <>
             <button
