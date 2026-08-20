@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* Republic Airways palette — same navy/red as the other RA apps. */
+:root {
+  --background: #00263a;
+  --foreground: #ffffff;
+  --ra-navy: #00263a;
+  --ra-red: #c8102e;
+  --ra-gold: #f5c542;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ra-navy: var(--ra-navy);
+  --color-ra-red: var(--ra-red);
+  --color-ra-gold: var(--ra-gold);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Keep typed text readable on light inputs (matches other RA apps). */
+input,
+select,
+textarea {
+  color: #000000;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+/* Large iPad tap targets throughout the show. */
+button {
+  touch-action: manipulation;
+}
+
+/* Matches the square LEARN MORE CTA on the Republic Airways website. */
+.ra-category {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Board column titles — heavier and tighter so two-word names fit. */
+.ra-board-category {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* --- Flying planes (landing atmosphere, reused from other RA apps) --- */
+@keyframes flyBounce1 {
+  0% { transform: translateX(-50px) translateY(5vh) rotate(45deg); }
+  25% { transform: translateX(15vw) translateY(12vh) rotate(50deg); }
+  50% { transform: translateX(30vw) translateY(20vh) rotate(55deg); }
+  75% { transform: translateX(45vw) translateY(28vh) rotate(50deg); }
+  100% { transform: translateX(120vw) translateY(35vh) rotate(45deg); }
+}
+
+@keyframes flyBounce2 {
+  0% { transform: translateX(50px) translateY(40vh) rotate(180deg); }
+  20% { transform: translateX(-10vw) translateY(45vh) rotate(185deg); }
+  40% { transform: translateX(-25vw) translateY(50vh) rotate(180deg); }
+  60% { transform: translateX(-40vw) translateY(48vh) rotate(175deg); }
+  80% { transform: translateX(-60vw) translateY(52vh) rotate(180deg); }
+  100% { transform: translateX(-120vw) translateY(55vh) rotate(180deg); }
+}
+
+@keyframes flyBounce3 {
+  0% { transform: translateX(-50px) translateY(-10vh) rotate(35deg); }
+  20% { transform: translateX(12vw) translateY(-18vh) rotate(40deg); }
+  40% { transform: translateX(25vw) translateY(-25vh) rotate(38deg); }
+  60% { transform: translateX(38vw) translateY(-32vh) rotate(42deg); }
+  80% { transform: translateX(50vw) translateY(-40vh) rotate(40deg); }
+  100% { transform: translateX(120vw) translateY(-50vh) rotate(35deg); }
+}
+
+@keyframes flyBounce4 {
+  0% { transform: translateX(50px) translateY(8vh) rotate(225deg); }
+  25% { transform: translateX(-12vw) translateY(15vh) rotate(220deg); }
+  50% { transform: translateX(-28vw) translateY(22vh) rotate(225deg); }
+  75% { transform: translateX(-45vw) translateY(30vh) rotate(230deg); }
+  100% { transform: translateX(-120vw) translateY(38vh) rotate(225deg); }
+}
+
+@keyframes flyBounce5 {
+  0% { transform: translateX(50px) translateY(-5vh) rotate(135deg); }
+  22% { transform: translateX(-15vw) translateY(-12vh) rotate(140deg); }
+  44% { transform: translateX(-32vw) translateY(-20vh) rotate(138deg); }
+  66% { transform: translateX(-50vw) translateY(-28vh) rotate(142deg); }
+  88% { transform: translateX(-70vw) translateY(-35vh) rotate(140deg); }
+  100% { transform: translateX(-120vw) translateY(-45vh) rotate(135deg); }
+}
+
+/* Board cell pops when selected. */
+@keyframes cellPop {
+  0% { transform: scale(0.92); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Locked-in buzzer player pulse. */
+@keyframes buzzPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 197, 66, 0.55); }
+  50% { transform: scale(1.03); box-shadow: 0 0 0 18px rgba(245, 197, 66, 0); }
+}
+
+/* Daily Double gold flash. */
+@keyframes goldFlash {
+  0% { filter: brightness(1); }
+  40% { filter: brightness(1.35); }
+  100% { filter: brightness(1); }
+}
+
+/* Millionaire ladder highlight. */
+@keyframes ladderGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 197, 66, 0.35); }
+  50% { box-shadow: 0 0 18px 2px rgba(245, 197, 66, 0.55); }
+}
+
+.animate-cell-pop {
+  animation: cellPop 0.25s ease-out;
+}
+
+.animate-buzz-pulse {
+  animation: buzzPulse 1.1s ease-in-out infinite;
+}
+
+.animate-gold-flash {
+  animation: goldFlash 0.8s ease-in-out;
+}
+
+.animate-ladder-glow {
+  animation: ladderGlow 1.6s ease-in-out infinite;
+}
+
+/* Clue card: front is the clue, back is the answer. Both faces fill the card. */
+.clue-scene {
+  perspective: 1400px;
+  position: relative;
+}
+
+.clue-card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.clue-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.clue-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: #0a3d5c;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.clue-face p {
+  margin: 0;
+}
+
+.clue-face-back {
+  transform: rotateY(180deg);
+}
+
