@@ -12,7 +12,7 @@ export default function MillionaireLogo({ className = "" }: MillionaireLogoProps
     <img
       src="/images/millionaire-logo.png"
       alt="Who Wants to Be a Millionaire"
-      className={`h-auto max-w-full object-contain ${className}`}
+      className={`h-auto max-w-full rounded-full object-contain ${className}`}
     />
   )
 }

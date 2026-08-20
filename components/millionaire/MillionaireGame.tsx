@@ -4,6 +4,7 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
+import MillionaireLogo from "@/components/MillionaireLogo"
 import {
   dealMillionaireRound,
   MILLIONAIRE_PRIZES,
@@ -94,12 +95,10 @@ export default function MillionaireGame() {
 
   if (phase === "setup") {
     return (
-      <div className="mx-auto flex min-h-screen w-full max-w-xl flex-col justify-center px-6 py-8">
-        <h1 className="text-4xl font-bold">Who Wants to Be a Millionaire</h1>
-        <p className="mt-3 text-lg text-white/75">
-          One contestant. Ten questions that get harder, shuffled each round. Prizes are placeholders for the store.
-        </p>
-        <label className="mt-8 rounded-2xl bg-white p-4">
+      <div className="mx-auto flex min-h-screen w-full max-w-xl flex-col items-center justify-center px-6 py-8 text-center">
+        <MillionaireLogo className="h-28 w-auto md:h-36" />
+
+        <label className="mt-8 w-full rounded-2xl bg-white p-4 text-left">
           <span className="text-sm font-medium text-gray-600">Contestant name</span>
           <input
             type="text"
